@@ -33,6 +33,8 @@ public class GuideManager {
 	}
 
 	public static void removeLoadedGuide(String text) {
+		if(!(loadedGuides.containsKey(text)))
+			return;
 		loadedGuides.get(text).delete();
 		loadedGuides.remove(text);
 	}

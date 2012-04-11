@@ -148,7 +148,7 @@ public class GUIGuide extends GenericPopup {
 		//}
 
 		//this.attachWidget(plugin, configure); 
-
+		setGuide(GuideManager.getLoadedGuides().get(box.getItems().get(0)));
 	}
 	private Guide guide;
 

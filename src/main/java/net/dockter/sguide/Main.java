@@ -38,6 +38,21 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new GuideListener(this), this);
 		File file = new File(this.getDataFolder() + File.separator + "users.yml");
 		if (!file.exists()) {
+			File init = new File(this.getDataFolder() + File.separator + "guides" + File.separator + "initial.yml");
+			try {
+				init.createNewFile();
+			} catch (IOException ex) {
+				Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+			}
+			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
+			yconf.addDefault("Name", "Derpy");
+			yconf.addDefault("Date", "Future");
+			yconf.addDefault("Text", "Create a new guide by pressing add, and delete this one!");
+			try {
+				yconf.save(init);
+			} catch (IOException ex) {
+				Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+			}
 			try {
 				file.createNewFile();
 			} catch (IOException ex) {
