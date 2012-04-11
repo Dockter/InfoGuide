@@ -179,6 +179,7 @@ public class GUIGuide extends GenericPopup {
 			guideName.setVisible(true);
 			GuideManager.addGuide(guide);
 		}
+		guide.save();
 		refreshItems();
 	}
 
