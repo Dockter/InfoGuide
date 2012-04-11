@@ -32,6 +32,7 @@ public class Main extends JavaPlugin {
 		instance = this;
 		FileConfiguration config = this.getConfig();
 		config.addDefault("PromptTitle", "Generic title!");
+		config.addDefault("TitleX", 175);
 		config.options().copyDefaults(true);
 		saveConfig();
 		PluginManager pm = this.getServer().getPluginManager();

@@ -32,7 +32,7 @@ public class GUIGuide extends GenericPopup {
 		this.player = player;
 		// Label
 		GenericLabel label = new GenericLabel(Main.getInstance().getConfig().getString("PromptTitle"));
-		label.setX(175).setY(25);
+		label.setX(Main.getInstance().getConfig().getInt("TitleX")).setY(25);
 		label.setPriority(RenderPriority.Lowest);
 		label.setWidth(-1).setHeight(-1);
 

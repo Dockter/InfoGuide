@@ -35,5 +35,6 @@ public class BypassButton extends GenericButton {
 			ccolor = ChatColor.WHITE;
 		}
 		setText(ccolor + "B");
+		setDirty(true);
 	}
 }
