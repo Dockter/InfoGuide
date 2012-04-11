@@ -38,12 +38,14 @@ public class GUIGuide extends GenericPopup {
 
 		guideName = new GenericLabel("TehGuideName");
 		guideName.setWidth(-1).setHeight(-1);
-		guideName.setX(85).setY(42);
+		guideName.setX(80).setY(42);
 
 		guideInvisible = new GenericTextField();
 		guideInvisible.setWidth(150);
 		guideInvisible.setHeight(14);
 		guideInvisible.setX(85).setY(37);
+		guideInvisible.setMaximumCharacters(20);
+		guideInvisible.setMaximumLines(1);
 		guideInvisible.setVisible(false);
 
 		guideDate = new GenericLabel(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
@@ -52,11 +54,11 @@ public class GUIGuide extends GenericPopup {
 
 		box = new MyCombo(this);
 		box.setText("Guides");
-		refreshItems();
 		box.setX(275);
 		box.setY(38);
-		box.setWidth(49);
+		box.setWidth(55);
 		box.setHeight(14);
+		refreshItems();
 
 
 		// Border
@@ -158,7 +160,7 @@ public class GUIGuide extends GenericPopup {
 		}
 		this.guide = guide;
 		guideDate.setText(guide.getDate());
-		guideName.setText(guide.getName());
+		guideName.setText(guide.getName()).setWidth(-1);
 		guideField.setText(guide.getText());
 
 	}
@@ -174,7 +176,7 @@ public class GUIGuide extends GenericPopup {
 		guide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		if (guideInvisible.isVisible()) {
 			guide.setName(guideInvisible.getText());
-			guideName.setText(guideInvisible.getText());
+			guideName.setText(guideInvisible.getText()).setWidth(-1);
 			guideInvisible.setVisible(false);
 			guideName.setVisible(true);
 			GuideManager.addGuide(guide);
