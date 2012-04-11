@@ -44,7 +44,7 @@ public class GUIGuide extends GenericPopup {
 		guideInvisible.setWidth(150);
 		guideInvisible.setHeight(14);
 		guideInvisible.setX(85).setY(37);
-		guideInvisible.setMaximumCharacters(20);
+		guideInvisible.setMaximumCharacters(30);
 		guideInvisible.setMaximumLines(1);
 		guideInvisible.setVisible(false);
 
@@ -82,6 +82,7 @@ public class GUIGuide extends GenericPopup {
 		// guideField.setFieldColor(new Color(1.0F, 1.0F, 1.0F, 1.0F)); // White background
 		guideField.setBorderColor(new Color(0, 0, 0, 1.0F)); // Black border
 		guideField.setMaximumCharacters(200);
+		guideField.setMaximumLines(10);
 		guideField.setHeight(130).setWidth(262);
 		guideField.setX(84).setY(60);
 
