@@ -184,6 +184,7 @@ public class GUIGuide extends GenericPopup {
 	}
 
 	void onDeleteClick() {
+		if(box.getItems().size()==1) return;
 		GuideManager.removeLoadedGuide(guideName.getText());
 		refreshItems();
 		setGuide(GuideManager.getLoadedGuides().get(box.getItems().get(0)));
