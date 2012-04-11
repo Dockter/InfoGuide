@@ -35,7 +35,7 @@ public class Guide {
 	}
 
 	public void save() {
-		File toSave = new File("plugins"+File.separator+"SpoutGuide"+File.separator+"guides"+name);
+		File toSave = new File("plugins"+File.separator+"SpoutGuide"+File.separator+"guides"+File.separator+name);
 		if(!toSave.exists())
 			try {
 			toSave.createNewFile();
@@ -65,5 +65,9 @@ public class Guide {
 
 	public void setDate(String format) {
 		this.date = format;
+	}
+
+	public void setName(String text) {
+		this.name = text;
 	}
 }

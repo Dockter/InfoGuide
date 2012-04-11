@@ -1,17 +1,22 @@
 package net.dockter.sguide;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.dockter.sguide.guide.GuideManager;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+public class Main extends JavaPlugin {
 
-
-public class Main extends JavaPlugin{
 	private static Main instance;
-	
-	public static Plugin getInstance() {
+	private FileConfiguration bypass;
+
+	public static Main getInstance() {
 		return instance;
 	}
 
@@ -28,8 +33,34 @@ public class Main extends JavaPlugin{
 		FileConfiguration config = this.getConfig();
 		config.addDefault("PromptTitle", "Generic title!");
 		config.options().copyDefaults(true);
+		saveConfig();
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new GuideListener(this), this);
+		File file = new File(this.getDataFolder() + File.separator + "users.yml");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException ex) {
+				Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		bypass = YamlConfiguration.loadConfiguration(file);
 	}
 
+	public boolean isBypassing(String name) {
+		return bypass.contains(name) && bypass.getBoolean(name);
+	}
+
+	public boolean canBypass(String name) {
+		return bypass.contains(name);
+	}
+
+	public void setBypass(String name, boolean value) {
+		bypass.set(name, value);
+		try {
+			bypass.save(new File(this.getDataFolder() + File.separator + "users.yml"));
+		} catch (IOException ex) {
+			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }

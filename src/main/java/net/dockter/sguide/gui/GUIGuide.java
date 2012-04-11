@@ -23,7 +23,7 @@ public class GUIGuide extends GenericPopup {
 
 	final GenericTextField guideField, guideInvisible;
 	final GenericLabel guideName, guideDate;
-	final GenericButton close, newb, saveb, deleteb;
+	final GenericButton close, newb, saveb, deleteb, bb;
 	final ComboBox box;
 	private final SpoutPlayer player;
 
@@ -35,21 +35,21 @@ public class GUIGuide extends GenericPopup {
 		label.setX(175).setY(25);
 		label.setPriority(RenderPriority.Lowest);
 		label.setWidth(-1).setHeight(-1);
-		
+
 		guideName = new GenericLabel("TehGuideName");
 		guideName.setWidth(-1).setHeight(-1);
 		guideName.setX(85).setY(42);
-		
+
 		guideInvisible = new GenericTextField();
 		guideInvisible.setWidth(150);
-		guideInvisible.setHeight(15);
-		guideInvisible.setX(85).setY(40);
+		guideInvisible.setHeight(14);
+		guideInvisible.setX(85).setY(37);
 		guideInvisible.setVisible(false);
-		
+
 		guideDate = new GenericLabel(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		guideDate.setWidth(-1).setHeight(-1);
 		guideDate.setX(175).setY(42);
-		
+
 		box = new MyCombo(this);
 		box.setText("Guides");
 		refreshItems();
@@ -86,6 +86,9 @@ public class GUIGuide extends GenericPopup {
 		//Close Button
 		close = new CloseButton(this);
 		close.setAuto(false).setX(310).setY(200).setHeight(14).setWidth(40);
+		
+		bb = new BypassButton(player, this);
+		bb.setAuto(false).setX(280).setY(200).setHeight(14).setWidth(14);
 
 
 		this.setTransparent(true);
@@ -101,6 +104,8 @@ public class GUIGuide extends GenericPopup {
 		attachWidget(Main.getInstance(), guideInvisible);
 		attachWidget(Main.getInstance(), guideDate);
 		attachWidget(Main.getInstance(), box);
+		if(Main.getInstance().canBypass(player.getName())|| player.hasPermission("spoutguide.bypass")|| player.hasPermission("spoutguide.admin"))
+			attachWidget(Main.getInstance(), bb);
 
 		// Attach New / Edit / Save / Delete buttons
 		if (player.hasPermission("spoutguide.edit") || player.hasPermission("spoutguide.admin")) {
@@ -129,8 +134,8 @@ public class GUIGuide extends GenericPopup {
 		if (player.hasPermission("spoutguide.delete") || player.hasPermission("spoutguide.admin")) {
 			deleteb = new DeleteButton(this);
 			deleteb.setAuto(false).setX(180).setY(200).setHeight(14).setWidth(50);
-			attachWidget(Main.getInstance(),deleteb);
-		} else{
+			attachWidget(Main.getInstance(), deleteb);
+		} else {
 			deleteb = null;
 		}
 
@@ -146,16 +151,20 @@ public class GUIGuide extends GenericPopup {
 
 	}
 	private Guide guide;
+
 	public void setGuide(Guide guide) {
+		if (guide == null) {
+			return;
+		}
 		this.guide = guide;
 		guideDate.setText(guide.getDate());
 		guideName.setText(guide.getName());
 		guideField.setText(guide.getText());
-		
+
 	}
-	
+
 	public void onNewClick() {
-		setGuide(new Guide("","",""));
+		setGuide(new Guide("", "", ""));
 		guideName.setVisible(false);
 		guideInvisible.setVisible(true);
 	}
@@ -163,7 +172,8 @@ public class GUIGuide extends GenericPopup {
 	void onSaveClick() {
 		guide.setText(guideField.getText());
 		guide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
-		if(guideInvisible.isVisible()) {
+		if (guideInvisible.isVisible()) {
+			guide.setName(guideInvisible.getText());
 			guideName.setText(guideInvisible.getText());
 			guideInvisible.setVisible(false);
 			guideName.setVisible(true);
@@ -175,6 +185,7 @@ public class GUIGuide extends GenericPopup {
 	void onDeleteClick() {
 		GuideManager.removeLoadedGuide(guideName.getText());
 		refreshItems();
+		setGuide(GuideManager.getLoadedGuides().get(box.getItems().get(0)));
 	}
 
 	void onCloseClick() {
@@ -187,9 +198,9 @@ public class GUIGuide extends GenericPopup {
 
 	private void refreshItems() {
 		List<String> items = new ArrayList<String>();
-		for(String guide : GuideManager.getLoadedGuides().keySet()) {
-			if(player.hasPermission("spoutguide.view."+guide)||player.hasPermission("spoutguide.view")) {
-				items.add(guide);
+		for (String gguide : GuideManager.getLoadedGuides().keySet()) {
+			if (player.hasPermission("spoutguide.view." + gguide) || player.hasPermission("spoutguide.view")) {
+				items.add(gguide);
 			}
 		}
 		box.setItems(items);
