@@ -39,6 +39,7 @@ public class Main extends JavaPlugin {
 		File file = new File(this.getDataFolder() + File.separator + "users.yml");
 		if (!file.exists()) {
 			File init = new File(this.getDataFolder() + File.separator + "guides" + File.separator + "initial.yml");
+			init.getParentFile().mkdirs();
 			try {
 				init.createNewFile();
 			} catch (IOException ex) {
