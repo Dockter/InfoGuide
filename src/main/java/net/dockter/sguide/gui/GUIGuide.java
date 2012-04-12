@@ -53,7 +53,7 @@ public class GUIGuide extends GenericPopup {
 
 		box = new MyCombo(this);
 		box.setText("Guides");
-		box.setX(250);
+		box.setX(235);
 		box.setY(38);
 		box.setWidth(GenericLabel.getStringWidth("12345678901234567890"));
 		box.setHeight(14);
@@ -161,7 +161,7 @@ public class GUIGuide extends GenericPopup {
 			return;
 		}
 		this.guide = guide;
-		guideDate.setText(guide.getDate());
+		guideDate.setText("Updated: "+guide.getDate());
 		guideName.setText(guide.getName()).setWidth(-1);
 		guideField.setText(guide.getText());
 
