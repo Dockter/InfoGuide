@@ -33,6 +33,7 @@ public class Main extends JavaPlugin {
 		FileConfiguration config = this.getConfig();
 		config.addDefault("PromptTitle", "Generic title!");
 		config.addDefault("TitleX", 175);
+		config.addDefault("DefaultGuide", "Initial");
 		config.options().copyDefaults(true);
 		saveConfig();
 		PluginManager pm = this.getServer().getPluginManager();
@@ -49,7 +50,6 @@ public class Main extends JavaPlugin {
 			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
 			yconf.addDefault("Name", "Initial");
 			yconf.addDefault("Date", "Future");
-			yconf.addDefault("DefaultGuide", "Initial");
 			yconf.addDefault("Text", "Create a new guide by pressing add, and delete this one!");
 			yconf.options().copyDefaults(true);
 			try {
