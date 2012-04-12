@@ -31,8 +31,8 @@ public class Main extends JavaPlugin {
 		super.onEnable();
 		instance = this;
 		FileConfiguration config = this.getConfig();
-		config.addDefault("PromptTitle", "Generic title!");
-		config.addDefault("TitleX", 175);
+		config.addDefault("PromptTitle", "SpoutGuide");
+		config.addDefault("TitleX", 190);
 		config.addDefault("DefaultGuide", "Initial");
 		config.options().copyDefaults(true);
 		saveConfig();
@@ -50,7 +50,7 @@ public class Main extends JavaPlugin {
 			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
 			yconf.addDefault("Name", "Initial");
 			yconf.addDefault("Date", "Future");
-			yconf.addDefault("Text", "Create a new guide by pressing add, and delete this one!");
+			yconf.addDefault("Text", "Thank you for using SpoutGuide.");
 			yconf.options().copyDefaults(true);
 			try {
 				yconf.save(init);

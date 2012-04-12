@@ -35,7 +35,7 @@ public class GUIGuide extends GenericPopup {
 		label.setPriority(RenderPriority.Lowest);
 		label.setWidth(-1).setHeight(-1);
 
-		guideName = new GenericLabel("TehGuideName");
+		guideName = new GenericLabel("TheGuideNameHere");
 		guideName.setWidth(-1).setHeight(-1);
 		guideName.setX(80).setY(42);
 
@@ -80,8 +80,8 @@ public class GUIGuide extends GenericPopup {
 		//textField.setCursorPosition(3); // Puts the cursor after the third character
 		// guideField.setFieldColor(new Color(1.0F, 1.0F, 1.0F, 1.0F)); // White background
 		guideField.setBorderColor(new Color(0, 0, 0, 1.0F)); // Black border
-		guideField.setMaximumCharacters(200);
-		guideField.setMaximumLines(10);
+		guideField.setMaximumCharacters(2000);
+		guideField.setMaximumLines(20);
 		guideField.setHeight(130).setWidth(262);
 		guideField.setX(84).setY(60);
 
