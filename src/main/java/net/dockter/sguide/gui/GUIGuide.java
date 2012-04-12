@@ -38,7 +38,7 @@ public class GUIGuide extends GenericPopup {
 		guideName = new GenericLabel("TehGuideName");
 		guideName.setWidth(-1).setHeight(-1);
 		guideName.setX(80).setY(42);
-		
+
 		guideInvisible = new GenericTextField();
 		guideInvisible.setWidth(150);
 		guideInvisible.setHeight(14);
@@ -47,13 +47,13 @@ public class GUIGuide extends GenericPopup {
 		guideInvisible.setMaximumLines(1);
 		guideInvisible.setVisible(false);
 
-		guideDate = new GenericLabel(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
+		guideDate = new GenericLabel(new SimpleDateFormat("Updated: HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		guideDate.setWidth(-1).setHeight(-1);
-		guideDate.setX(175).setY(42);
+		guideDate.setX(80).setY(200);
 
 		box = new MyCombo(this);
 		box.setText("Guides");
-		box.setX(275);
+		box.setX(250);
 		box.setY(38);
 		box.setWidth(GenericLabel.getStringWidth("12345678901234567890"));
 		box.setHeight(14);
@@ -81,7 +81,7 @@ public class GUIGuide extends GenericPopup {
 		// guideField.setFieldColor(new Color(1.0F, 1.0F, 1.0F, 1.0F)); // White background
 		guideField.setBorderColor(new Color(0, 0, 0, 1.0F)); // Black border
 		guideField.setMaximumCharacters(200);
-		guideField.setMaximumLines(30);
+		guideField.setMaximumLines(10);
 		guideField.setHeight(130).setWidth(262);
 		guideField.setX(84).setY(60);
 
@@ -126,11 +126,13 @@ public class GUIGuide extends GenericPopup {
 
 		if (player.hasPermission("spoutguide.create") || player.hasPermission("spoutguide.edit") || player.hasPermission("spoutguide.admin")) {
 			// Add New Button
+			guideDate.setVisible(false);
 			newb = new NewButton(this);
 			newb.setAuto(false).setX(80).setY(200).setHeight(14).setWidth(40);
 			attachWidget(Main.getInstance(), newb);
 		} else {
 			newb = null;
+			guideDate.setVisible(true);
 		}
 
 		if (player.hasPermission("spoutguide.delete") || player.hasPermission("spoutguide.admin")) {
