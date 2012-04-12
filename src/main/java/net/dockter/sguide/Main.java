@@ -49,6 +49,7 @@ public class Main extends JavaPlugin {
 			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
 			yconf.addDefault("Name", "Initial");
 			yconf.addDefault("Date", "Future");
+			yconf.addDefault("DefaultGuide", "Initial");
 			yconf.addDefault("Text", "Create a new guide by pressing add, and delete this one!");
 			yconf.options().copyDefaults(true);
 			try {
