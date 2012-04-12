@@ -47,7 +47,7 @@ public class GUIGuide extends GenericPopup {
 		guideInvisible.setMaximumLines(1);
 		guideInvisible.setVisible(false);
 
-		guideDate = new GenericLabel(new SimpleDateFormat("Updated: HH:mm dd-MM").format(Calendar.getInstance().getTime()));
+		guideDate = new GenericLabel("Updated: "+new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		guideDate.setWidth(-1).setHeight(-1);
 		guideDate.setX(80).setY(200);
 
