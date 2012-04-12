@@ -10,7 +10,6 @@ import net.dockter.sguide.guide.GuideManager;
 import org.getspout.spoutapi.gui.Color;
 import org.getspout.spoutapi.gui.ComboBox;
 import org.getspout.spoutapi.gui.GenericButton;
-import org.getspout.spoutapi.gui.GenericComboBox;
 import org.getspout.spoutapi.gui.GenericGradient;
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
@@ -56,7 +55,7 @@ public class GUIGuide extends GenericPopup {
 		box.setText("Guides");
 		box.setX(275);
 		box.setY(38);
-		box.setWidth(55);
+		box.setWidth(GenericLabel.getStringWidth("12345678901234567890"));
 		box.setHeight(14);
 		refreshItems();
 
