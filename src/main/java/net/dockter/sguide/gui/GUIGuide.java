@@ -3,6 +3,7 @@ package net.dockter.sguide.gui;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import net.dockter.sguide.Main;
 import net.dockter.sguide.guide.Guide;
@@ -106,11 +107,11 @@ public class GUIGuide extends GenericPopup {
 		attachWidget(Main.getInstance(), guideInvisible);
 		attachWidget(Main.getInstance(), guideDate);
 		attachWidget(Main.getInstance(), box);
-		if(Main.getInstance().canBypass(player.getName())|| player.hasPermission("spoutguide.bypass")|| player.hasPermission("spoutguide.admin"))
+		if(Main.getInstance().canBypass(player.getName())|| player.hasPermission("infoguide.bypass")|| player.hasPermission("infoguide.admin"))
 			attachWidget(Main.getInstance(), bb);
 
 		// Attach New / Edit / Save / Delete buttons
-		if (player.hasPermission("spoutguide.edit") || player.hasPermission("spoutguide.admin")) {
+		if (player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin")) {
 
 			saveb = new SaveButton(this);
 			saveb.setAuto(false).setX(130).setY(200).setHeight(14).setWidth(40);
@@ -119,12 +120,12 @@ public class GUIGuide extends GenericPopup {
 			saveb = null;
 		}
 
-		if (player.hasPermission("spoutguide.admin"));
+		if (player.hasPermission("infoguide.admin"));
 		{
 			// Add "Set as Default" checkbox
 		}
 
-		if (player.hasPermission("spoutguide.create") || player.hasPermission("spoutguide.edit") || player.hasPermission("spoutguide.admin")) {
+		if (player.hasPermission("infoguide.create") || player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin")) {
 			// Add New Button
 			guideDate.setVisible(false);
 			newb = new NewButton(this);
@@ -135,7 +136,7 @@ public class GUIGuide extends GenericPopup {
 			guideDate.setVisible(true);
 		}
 
-		if (player.hasPermission("spoutguide.delete") || player.hasPermission("spoutguide.admin")) {
+		if (player.hasPermission("infoguide.delete") || player.hasPermission("infoguide.admin")) {
 			deleteb = new DeleteButton(this);
 			deleteb.setAuto(false).setX(180).setY(200).setHeight(14).setWidth(50);
 			attachWidget(Main.getInstance(), deleteb);
@@ -143,7 +144,7 @@ public class GUIGuide extends GenericPopup {
 			deleteb = null;
 		}
 
-		if (player.hasPermission("spoutguide.bypass") || player.hasPermission("spoutguide.admin")) {
+		if (player.hasPermission("infoguide.bypass") || player.hasPermission("infoguide.admin")) {
 			// Add bypass Button since Checkbox widget doesnt exist.
 		}
 
@@ -205,10 +206,11 @@ public class GUIGuide extends GenericPopup {
 	private void refreshItems() {
 		List<String> items = new ArrayList<String>();
 		for (String gguide : GuideManager.getLoadedGuides().keySet()) {
-			if (player.hasPermission("spoutguide.view." + gguide) || player.hasPermission("spoutguide.view")) {
+			if (player.hasPermission("infoguide.view." + gguide) || player.hasPermission("infoguide.view")) {
 				items.add(gguide);
 			}
 		}
+		Collections.sort(items);
 		box.setItems(items);
 	}
 }

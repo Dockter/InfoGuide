@@ -19,7 +19,7 @@ class GuideListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (!(event.getPlayer().hasPermission("spoutguide.noguide"))&&!instance.isBypassing(event.getPlayer().getName())) {
+		if (!(event.getPlayer().hasPermission("infoguide.noguide"))&&!instance.isBypassing(event.getPlayer().getName())) {
 			final SpoutPlayer splr = (SpoutPlayer) event.getPlayer();
 			Bukkit.getScheduler().scheduleSyncDelayedTask(instance, new Runnable() {
 

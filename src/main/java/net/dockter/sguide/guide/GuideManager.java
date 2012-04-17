@@ -44,7 +44,7 @@ public class GuideManager {
 
 	private static void load() {
 		loadedGuides.clear();
-		File dir = new File("plugins"+File.separator+"SpoutGuide"+File.separator+"guides");
+		File dir = new File("plugins"+File.separator+"infoguide"+File.separator+"guides");
 		dir.mkdirs();
 		for(File file : dir.listFiles()) {
 			Guide g = Guide.load(file);
