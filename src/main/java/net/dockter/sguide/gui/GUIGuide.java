@@ -2,6 +2,7 @@ package net.dockter.sguide.gui;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -210,7 +211,7 @@ public class GUIGuide extends GenericPopup {
 				items.add(gguide);
 			}
 		}
-		Collections.sort(items);
+		Collections.sort(items, String.CASE_INSENSITIVE_ORDER);
 		box.setItems(items);
 	}
 }
