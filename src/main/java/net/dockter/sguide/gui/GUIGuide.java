@@ -213,5 +213,6 @@ public class GUIGuide extends GenericPopup {
 		}
 		Collections.sort(items, String.CASE_INSENSITIVE_ORDER);
 		box.setItems(items);
+		box.setDirty(true);
 	}
 }
