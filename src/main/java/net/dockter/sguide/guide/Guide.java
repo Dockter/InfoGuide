@@ -35,7 +35,7 @@ public class Guide {
 	}
 
 	public void save() {
-		File toSave = new File("plugins"+File.separator+"infoguide"+File.separator+"guides"+File.separator+name+".yml");
+		File toSave = new File("plugins"+File.separator+"InfoGuide"+File.separator+"guides"+File.separator+name+".yml");
 		if(!toSave.exists())
 			try {
 			toSave.createNewFile();
@@ -55,7 +55,7 @@ public class Guide {
 	}
 
 	public void delete() {
-		File toSave = new File("plugins"+File.separator+"infoguide"+File.separator+"guides"+File.separator+name+".yml");
+		File toSave = new File("plugins"+File.separator+"InfoGuide"+File.separator+"guides"+File.separator+name+".yml");
 		toSave.delete();
 	}
 

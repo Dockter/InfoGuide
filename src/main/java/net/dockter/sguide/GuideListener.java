@@ -2,6 +2,9 @@ package net.dockter.sguide;
 
 import net.dockter.sguide.gui.GUIGuide;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -35,4 +38,5 @@ class GuideListener implements Listener {
 		if(event.getKey() == Keyboard.KEY_F12)
 			event.getPlayer().getMainScreen().attachPopupScreen(new GUIGuide(event.getPlayer()));
 	}
+	
 }

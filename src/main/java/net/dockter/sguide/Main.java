@@ -4,11 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import net.dockter.sguide.gui.GUIGuide;
 import net.dockter.sguide.guide.GuideManager;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class Main extends JavaPlugin {
 
@@ -81,4 +89,21 @@ public class Main extends JavaPlugin {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+	 
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	    	Player player = null;
+	    	if (sender instanceof Player) {
+	    		player = (Player) sender;
+	    	}
+	     
+	         if (cmd.getName().equalsIgnoreCase("infoguide")) {
+	    		if (player == null) {
+	    			sender.sendMessage("InfoGuide cannot be run from the server console.");
+	    		} else {
+	    			((SpoutPlayer) sender).getMainScreen().attachPopupScreen(new GUIGuide((SpoutPlayer) sender));	    			
+	    		}
+	    		return true;
+	    	}
+	    	return false;
+	    }
 }
