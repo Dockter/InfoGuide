@@ -11,15 +11,16 @@ import org.bukkit.Bukkit;
 public class GuideManager {
 	private static final Map<String, Guide> loadedGuides = new HashMap<String, Guide>();
 	
-	static {
-		load();
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
+	// Disabled the auto-load functionality, too much strain on servers.
+	//static {
+		//load();
+		//Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 
-			public void run() {
-				load();
-			}
-		}, 20L*5, 20L*5);
-	}
+			//public void run() {
+			//	load();
+			//}
+		//}, 20L*5, 20L*5);
+	//}
 	
 	public static void disable() {
 		for(Guide guide : loadedGuides.values()) {
@@ -42,7 +43,7 @@ public class GuideManager {
 		loadedGuides.remove(text);
 	}
 
-	private static void load() {
+	public static void load() {
 		loadedGuides.clear();
 		File dir = new File("plugins"+File.separator+"InfoGuide"+File.separator+"guides");
 		dir.mkdirs();

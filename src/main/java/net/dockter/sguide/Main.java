@@ -21,7 +21,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public class Main extends JavaPlugin {
 
 	private static Main instance;
-	private FileConfiguration bypass;
+	private static FileConfiguration bypass;
 
 	public static Main getInstance() {
 		return instance;
@@ -40,6 +40,7 @@ public class Main extends JavaPlugin {
 		FileConfiguration config = this.getConfig();
 		config.addDefault("PromptTitle", "Info Guide");
 		config.addDefault("TitleX", 190);
+		config.addDefault("DisplayOnLogin", true);
 		config.addDefault("DefaultGuide", "Initial");
 		config.options().copyDefaults(true);
 		saveConfig();
@@ -56,8 +57,17 @@ public class Main extends JavaPlugin {
 			}
 			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
 			yconf.addDefault("Name", "Initial");
-			yconf.addDefault("Date", "Future");
-			yconf.addDefault("Text", "Thank you for using Info Guide.");
+			yconf.addDefault("Date", "Future");			
+			yconf.addDefault("Pageone", "Page 1 of InfoGuide");
+			yconf.addDefault("Pagetwo", "Page 2 of InfoGuide");
+			yconf.addDefault("Pagethree", "Page 3 of InfoGuide");
+			yconf.addDefault("Pagefour", "Page 4 of InfoGuide");
+			yconf.addDefault("Pagefive", "Page 5 of InfoGuide");
+			yconf.addDefault("Pagesix", "Page 6 of InfoGuide");
+			yconf.addDefault("Pageseven", "Page 7 of InfoGuide");
+			yconf.addDefault("Pageeight", "Page 8 of InfoGuide");
+			yconf.addDefault("Pagenine", "Page 9 of InfoGuide");
+			yconf.addDefault("Pageten", "Page 10 of InfoGuide");
 			yconf.options().copyDefaults(true);
 			try {
 				yconf.save(init);
@@ -73,11 +83,11 @@ public class Main extends JavaPlugin {
 		bypass = YamlConfiguration.loadConfiguration(file);
 	}
 
-	public boolean isBypassing(String name) {
+	public static boolean isBypassing(String name) {
 		return bypass.contains(name) && bypass.getBoolean(name);
 	}
 
-	public boolean canBypass(String name) {
+	public static boolean canBypass(String name) {
 		return bypass.contains(name);
 	}
 
