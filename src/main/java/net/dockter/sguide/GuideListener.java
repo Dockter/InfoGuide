@@ -26,17 +26,19 @@ class GuideListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (Main.getInstance().getConfig().getBoolean("DisplayOnLogin", true) || (!(event.getPlayer().hasPermission("infoguide.bypassall")))) {
-			if (!(event.getPlayer().hasPermission("infoguide.bypass"))
-				&& !instance.isBypassing(event.getPlayer().getName())) {
-			final SpoutPlayer splr = (SpoutPlayer) event.getPlayer();
-				GuideManager.load();
-				Bukkit.getScheduler().scheduleSyncDelayedTask(instance,
-						new Runnable() {
-							public void run() {
-								splr.getMainScreen().attachPopupScreen(new GUIGuide(splr));
-								}
-						}, 20L);
+		if (Main.getInstance().getConfig().getBoolean("DisplayOnLogin", true)) {
+			if (!(event.getPlayer().hasPermission("infoguide.bypassall"))) {
+				if (!(event.getPlayer().hasPermission("infoguide.bypass"))
+						&& !instance.isBypassing(event.getPlayer().getName())) {
+					final SpoutPlayer splr = (SpoutPlayer) event.getPlayer();
+					GuideManager.load();
+					Bukkit.getScheduler().scheduleSyncDelayedTask(instance,
+							new Runnable() {
+						public void run() {
+							splr.getMainScreen().attachPopupScreen(new GUIGuide(splr));
+						}
+					}, 20L);
+				}
 			}
 		}
 	}
@@ -47,7 +49,7 @@ class GuideListener implements Listener {
 			GuideManager.load();
 			event.getPlayer().getMainScreen().attachPopupScreen(new GUIGuide(event.getPlayer()));
 		}
-			
+
 	}
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {

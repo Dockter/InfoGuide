@@ -1,7 +1,7 @@
 name: InfoGuide
 main: net.dockter.sguide.Main
 authors: [Dockter, ZNickq]
-version: 1.4
+version: 1.5
 commands:
   infoguide:
     description: InfoGuide command.

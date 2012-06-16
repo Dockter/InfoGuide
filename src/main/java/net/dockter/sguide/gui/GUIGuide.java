@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,6 +28,7 @@ import org.getspout.spoutapi.gui.GenericSlider;
 import org.getspout.spoutapi.gui.GenericTextField;
 import org.getspout.spoutapi.gui.GenericTexture;
 import org.getspout.spoutapi.gui.RenderPriority;
+import org.getspout.spoutapi.gui.Screen;
 import org.getspout.spoutapi.gui.WidgetAnchor;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -34,7 +36,7 @@ public class GUIGuide extends GenericPopup {
 
 	final GenericTextField guideField, guideInvisible;
 	final GenericLabel guideName, guideDate, pagelabel;
-	public static Guide currentGuide;
+	final public static HashMap<Player, Guide> map = new HashMap<Player, Guide>();
 	public int pageno = 1;
 	final GenericButton close, newb, saveb, deleteb, pd, pu;	
 	final ComboBox box; 
@@ -45,11 +47,8 @@ public class GUIGuide extends GenericPopup {
 	public GUIGuide(SpoutPlayer player) {
 		super();		
 		this.player = player;
-		// Label
-		//GenericLabel label = new GenericLabel(Main.getInstance().getConfig().getString("PromptTitle"));
-		//label.setX(Main.getInstance().getConfig().getInt("TitleX")).setY(25);
+	
 		GenericLabel label = new GenericLabel();
-		//label.setText("InfoGuide");
 		label.setText(Main.getInstance().getConfig().getString("PromptTitle"));
 		label.setAnchor(WidgetAnchor.CENTER_CENTER);
 		label.shiftXPos(-35).shiftYPos(-122);		
@@ -60,9 +59,7 @@ public class GUIGuide extends GenericPopup {
 		guideName.setWidth(-1).setHeight(-1);
 		guideName.setAnchor(WidgetAnchor.CENTER_CENTER);
 		guideName.shiftXPos(-200).shiftYPos(-105);
-		//guideName.setX(80).setY(42);
-
-		//Current Guide Loaded Name Displayed Here
+	
 		guideInvisible = new GenericTextField();
 		guideInvisible.setWidth(150).setHeight(18);
 		guideInvisible.setAnchor(WidgetAnchor.CENTER_CENTER);
@@ -71,13 +68,11 @@ public class GUIGuide extends GenericPopup {
 		guideInvisible.setMaximumLines(1);		
 		guideInvisible.setVisible(false);
 
-		//Update Date
 		guideDate = new GenericLabel("Updated: "+new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		guideDate.setWidth(-1).setHeight(-1);
 		guideDate.setAnchor(WidgetAnchor.CENTER_CENTER);
 		guideDate.shiftXPos(-200).shiftYPos(90);	
 
-		//ComboBox
 		box = new MyCombo(this);
 		box.setText("Guides");
 		box.setAnchor(WidgetAnchor.CENTER_CENTER);	
@@ -87,36 +82,22 @@ public class GUIGuide extends GenericPopup {
 		box.setAuto(true);		
 		refreshItems();
 
-		// Border
 		GenericTexture border = new GenericTexture("http://www.almuramc.com/images/sguide.png");		
 		border.setAnchor(WidgetAnchor.CENTER_CENTER);
 		border.setPriority(RenderPriority.High);
 		border.setWidth(626).setHeight(240);		
 		border.shiftXPos(-220).shiftYPos(-128);
 
-		// Background gradient
-		//GenericGradient gradient = new GenericGradient();
-		//gradient.setTopColor(new Color(0.25F, 0.25F, 0.25F, 1.0F));
-		//gradient.setBottomColor(new Color(0.35F, 0.35F, 0.35F, 1.0F));
-		//gradient.setWidth(300).setHeight(200);
-		//gradient.setX(65).setY(20);
-		//gradient.setPriority(RenderPriority.Highest);
-
-		// TextBox
 		guideField = new GenericTextField();
 		guideField.setText("first guide goes here"); // The default text
-		//textField.setCursorPosition(3); // Puts the cursor after the third character
-		//guideField.setFieldColor(new Color(1.0F, 1.0F, 1.0F, 1.0F)); // White background
 		guideField.setAnchor(WidgetAnchor.CENTER_CENTER);
 		guideField.setBorderColor(new Color(1.0F, 1.0F, 1.0F, 1.0F)); // White border
 		guideField.setMaximumCharacters(1000);
 		guideField.setMaximumLines(13);
 		guideField.setHeight(160).setWidth(377);
-		//guideField.setX(84).setY(60);
 		guideField.shiftXPos(-195).shiftYPos(-83);
 		guideField.setMargin(0);
-
-		//Close Button
+		
 		close = new CloseButton(this);
 		close.setAuto(true);
 		close.setAnchor(WidgetAnchor.CENTER_CENTER);
@@ -128,8 +109,6 @@ public class GUIGuide extends GenericPopup {
 		pu.setAnchor(WidgetAnchor.CENTER_CENTER);
 		pu.setHeight(18).setWidth(40);
 		pu.shiftXPos(17).shiftYPos(87);
-		
-		
 				
 		pagelabel = new GenericLabel();
 		pagelabel.setText(Integer.toString(pageno));
@@ -137,16 +116,13 @@ public class GUIGuide extends GenericPopup {
 		pagelabel.shiftXPos(66).shiftYPos(92);		
 		pagelabel.setPriority(RenderPriority.Lowest);
 		pagelabel.setWidth(5).setHeight(18);
-		
-		
-		
+	
 		pd = new PageDownButton(this);
 		pd.setAuto(true).setText(">>>");
 		pd.setAnchor(WidgetAnchor.CENTER_CENTER);
 		pd.setHeight(18).setWidth(40);
 		pd.shiftXPos(82).shiftYPos(87);
 		
-		//checkBox = new GenericCheckBox();
 		checkBox = new BypassCheckBox(player, this);
 		checkBox.setText("Bypass");		
 		checkBox.setAnchor(WidgetAnchor.CENTER_CENTER);
@@ -172,7 +148,6 @@ public class GUIGuide extends GenericPopup {
 		if(Main.getInstance().canBypass(player.getName())|| player.hasPermission("infoguide.bypass")|| player.hasPermission("infoguide.admin"))
 			attachWidget(Main.getInstance(), checkBox);
 
-		// Attach New / Edit / Save / Delete buttons
 		if (player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin")) {
 			saveb = new SaveButton(this);
 			saveb.setAnchor(WidgetAnchor.CENTER_CENTER);
@@ -181,14 +156,8 @@ public class GUIGuide extends GenericPopup {
 		} else {
 			saveb = null;
 		}
-
-		if (player.hasPermission("infoguide.admin"));
-		{
-			// Add "Set as Default" checkbox
-		}
-
-		if (player.hasPermission("infoguide.create") || player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin")) {
-			// Add New Button
+		
+		if (player.hasPermission("infoguide.create") || player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin")) {			
 			guideDate.setVisible(false);
 			newb = new NewButton(this);
 			newb.setAuto(true);
@@ -208,10 +177,6 @@ public class GUIGuide extends GenericPopup {
 		} else {
 			deleteb = null;
 		}
-
-		if (player.hasPermission("infoguide.bypass") || player.hasPermission("infoguide.admin")) {
-			// Add bypass Button since Checkbox widget doesnt exist.
-		}
 	
 		setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("DefaultGuide")));
 	}
@@ -224,42 +189,41 @@ public class GUIGuide extends GenericPopup {
 		}
 		this.guide = guide;
 		guideDate.setText("Updated: "+guide.getDate());
-		guideName.setText(guide.getName()).setWidth(-1);
-		currentGuide = guide;
+		guideName.setText(guide.getName()).setWidth(-1);		
+		map.put(player, guide);
 		pageno = 1;
 		pagelabel.setText(Integer.toString(pageno));
 		guideField.setText(guide.getPageone());
-
 	}
 
 	public void pageUp() {
-		if (pageno==10) guideField.setText(currentGuide.getPagenine());
-		if (pageno==9) guideField.setText(currentGuide.getPageeight());
-		if (pageno==8) guideField.setText(currentGuide.getPageseven());
-		if (pageno==7) guideField.setText(currentGuide.getPagesix());
-		if (pageno==6) guideField.setText(currentGuide.getPagefive());
-		if (pageno==5) guideField.setText(currentGuide.getPagefour());
-		if (pageno==4) guideField.setText(currentGuide.getPagethree());
-		if (pageno==3) guideField.setText(currentGuide.getPagetwo());
-		if (pageno==2) guideField.setText(currentGuide.getPageone());
+		if (pageno==10) guideField.setText(map.get(player).getPagenine());
+		if (pageno==9) guideField.setText(map.get(player).getPageeight());
+		if (pageno==8) guideField.setText(map.get(player).getPageseven());
+		if (pageno==7) guideField.setText(map.get(player).getPagesix());
+		if (pageno==6) guideField.setText(map.get(player).getPagefive());
+		if (pageno==5) guideField.setText(map.get(player).getPagefour());
+		if (pageno==4) guideField.setText(map.get(player).getPagethree());
+		if (pageno==3) guideField.setText(map.get(player).getPagetwo());
+		if (pageno==2) guideField.setText(map.get(player).getPageone());
 		pageno = pageno - 1;
 			if (pageno==0) pageno=1;
-		pagelabel.setText(Integer.toString(pageno));
+		pagelabel.setText(Integer.toString(pageno));		
 	}
 	
 	public void pageDown() {
-		if (pageno==1) guideField.setText(currentGuide.getPagetwo());
-		if (pageno==2) guideField.setText(currentGuide.getPagethree());
-		if (pageno==3) guideField.setText(currentGuide.getPagefour());
-		if (pageno==4) guideField.setText(currentGuide.getPagefive());
-		if (pageno==5) guideField.setText(currentGuide.getPagesix());
-		if (pageno==6) guideField.setText(currentGuide.getPageseven());
-		if (pageno==7) guideField.setText(currentGuide.getPageeight());
-		if (pageno==8) guideField.setText(currentGuide.getPagenine());
-		if (pageno==9) guideField.setText(currentGuide.getPageten());		
+		if (pageno==1) guideField.setText(map.get(player).getPagetwo());
+		if (pageno==2) guideField.setText(map.get(player).getPagethree());
+		if (pageno==3) guideField.setText(map.get(player).getPagefour());
+		if (pageno==4) guideField.setText(map.get(player).getPagefive());
+		if (pageno==5) guideField.setText(map.get(player).getPagesix());
+		if (pageno==6) guideField.setText(map.get(player).getPageseven());
+		if (pageno==7) guideField.setText(map.get(player).getPageeight());
+		if (pageno==8) guideField.setText(map.get(player).getPagenine());
+		if (pageno==9) guideField.setText(map.get(player).getPageten());		
 		pageno = pageno + 1;
 			if (pageno==11) pageno=10;	
-		pagelabel.setText(Integer.toString(pageno));
+		pagelabel.setText(Integer.toString(pageno));		
 	}
 	
 	public void onNewClick() {
@@ -279,7 +243,7 @@ public class GUIGuide extends GenericPopup {
 		if (pageno==8) guide.setPageeight(guideField.getText());
 		if (pageno==9) guide.setPagenine(guideField.getText());
 		if (pageno==10) guide.setPageten(guideField.getText());
-		
+				
 		guide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		if (guideInvisible.isVisible()) {
 			guide.setName(guideInvisible.getText());
@@ -300,7 +264,9 @@ public class GUIGuide extends GenericPopup {
 	}
 
 	void onCloseClick() {
-		player.closeActiveWindow();		
+		Screen screen = ((SpoutPlayer) player).getMainScreen();				
+		screen.removeWidget(this);
+		player.getMainScreen().closePopup();
 	}
 
 	void onSelect(int i, String text) {
