@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 
@@ -14,12 +16,11 @@ public class Guide {
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);		
 		return new Guide(config.getString("Name"),config.getString("Date"),config.getString("Text"),config.getString("Pageone"),config.getString("Pagetwo"),config.getString("Pagethree"),config.getString("Pagefour"),config.getString("Pagefive"),config.getString("Pagesix"),config.getString("Pageseven"),config.getString("Pageeight"),config.getString("Pagenine"),config.getString("Pageten"));
 	}
-	private String name, date, text, pageone, pagetwo, pagethree, pagefour, pagefive, pagesix, pageseven, pageeight, pagenine, pageten;
+	private String name, date, pageone, pagetwo, pagethree, pagefour, pagefive, pagesix, pageseven, pageeight, pagenine, pageten;
 
 	public Guide(String name, String date, String text, String pageone, String pagetwo, String pagethree, String pagefour, String pagefive, String pagesix, String pageseven, String pageeight, String pagenine, String pageten) {
 		this.name = name;
-		this.date = date;	
-		this.text = text;
+		this.date = date;
 		this.pageone = pageone;
 		this.pagetwo = pagetwo;
 		this.pagethree = pagethree;
@@ -44,7 +45,21 @@ public class Guide {
 			this.pageten = " ";
 			log.info("Upgrading Guide..");
 		}
-		
+		prepareForLoad();
+	}
+
+	private void prepareForLoad() {
+		for(ChatColor possibleColor : ChatColor.values()) {
+			pageone = pageone.replaceAll("Cc-"+possibleColor.getChar(), ""+possibleColor);
+			//TODO put all the other pages and stuff here
+		}
+	}
+
+	private void prepareForSave() {
+		for(ChatColor possibleColor : ChatColor.values()) {
+			pageone = pageone.replaceAll(""+possibleColor, "Cc-"+possibleColor.getChar());
+			//TODO put all the other pages and stuff here
+		}
 	}
 
 	public String getName() {
@@ -96,6 +111,7 @@ public class Guide {
 	}
 
 	public void save() {
+		prepareForSave();
 		File toSave = new File("plugins"+File.separator+"InfoGuide"+File.separator+"guides"+File.separator+name+".yml");
 		if(!toSave.exists())
 			try {
