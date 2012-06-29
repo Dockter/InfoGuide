@@ -48,17 +48,34 @@ public class Guide {
 		prepareForLoad();
 	}
 
-	private void prepareForLoad() {
+	public void prepareForLoad() {
 		for(ChatColor possibleColor : ChatColor.values()) {
-			pageone = pageone.replaceAll("Cc-"+possibleColor.getChar(), ""+possibleColor);
-			//TODO put all the other pages and stuff here
+			pageone = pageone.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pagetwo = pagetwo.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pagethree = pagethree.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pagefour = pagefour.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pagefive = pagefive.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pagesix = pagesix.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pageseven = pageseven.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pageeight = pageeight.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pagenine = pagenine.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			pageten = pageten.replaceAll("#"+possibleColor.getChar(), ""+possibleColor);
+			
 		}
 	}
 
-	private void prepareForSave() {
-		for(ChatColor possibleColor : ChatColor.values()) {
-			pageone = pageone.replaceAll(""+possibleColor, "Cc-"+possibleColor.getChar());
-			//TODO put all the other pages and stuff here
+	public void prepareForSave() {
+		for(ChatColor possibleColor : ChatColor.values()) {			
+			pageone = pageone.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pagetwo = pagetwo.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pagethree = pagethree.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pagefour = pagefour.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pagefive = pagefive.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pagesix = pagesix.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pageseven = pageseven.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pageeight = pageeight.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pagenine = pagenine.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
+			pageten = pageten.replaceAll(""+possibleColor, "#"+possibleColor.getChar());
 		}
 	}
 
@@ -71,42 +88,52 @@ public class Guide {
 	}
 
 	public String getPageone() {
+		prepareForLoad();
 		return pageone;
 	}
 
 	public String getPagetwo() {
+		prepareForLoad();
 		return pagetwo;
 	}
 
 	public String getPagethree() {
+		prepareForLoad();
 		return pagethree;
 	}
 
 	public String getPagefour() {
+		prepareForLoad();
 		return pagefour;
 	}
 
 	public String getPagefive() {
+		prepareForLoad();
 		return pagefive;
 	}
 
 	public String getPagesix() {
+		prepareForLoad();
 		return pagesix;
 	}
 
 	public String getPageseven() {
+		prepareForLoad();
 		return pageseven;
 	}
 
 	public String getPageeight() {
+		prepareForLoad();
 		return pageeight;
 	}
 
 	public String getPagenine() {
+		prepareForLoad();
 		return pagenine;
 	}
 
 	public String getPageten() {
+		prepareForLoad();
 		return pageten;
 	}
 

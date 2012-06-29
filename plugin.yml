@@ -1,7 +1,7 @@
 name: InfoGuide
 main: net.dockter.sguide.Main
 authors: [Dockter, ZNickq]
-version: 1.5
+version: 1.61
 commands:
   infoguide:
     description: InfoGuide command.
@@ -22,6 +22,18 @@ permissions:
     infoguide.view:
         description: Allows users to be able to view guides
         default: true
+    infoguide.guestguide:
+        description: Preset Default guide based on Guest Permissions
+        default: false
+    infoguide.memberguide:
+        description: Preset Default guide based on member Permissions
+        default: false
+    infoguide.supermemberguide:
+        description: Preset Default guide based on supermember Permissions
+        default: false
+    infoguide.moderatorguide:
+        description: Preset Default guide based on moderator Permissions
+        default: false
     infoguide.delete:
         description: Allows user to delete guides
         default: op

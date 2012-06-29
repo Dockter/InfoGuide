@@ -178,7 +178,21 @@ public class GUIGuide extends GenericPopup {
 			deleteb = null;
 		}
 	
+		if (player.hasPermission("infoguide.moderatorguide")) {
+			setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("ModeratorGuide")));
+			return;
+		} else if (player.hasPermission("infoguide.supermemberguide")) {
+			setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("SuperMemberGuide")));
+			return;
+		} else if (player.hasPermission("infoguide.memberguide")) {
+			setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("MemberGuide")));
+			return;
+		} else if (player.hasPermission("infoguide.guestguide")) {
+			setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("GuestGuide")));
+			return;
+		} else {
 		setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("DefaultGuide")));
+		}
 	}
 	
 	private Guide guide;
@@ -211,7 +225,7 @@ public class GUIGuide extends GenericPopup {
 		pagelabel.setText(Integer.toString(pageno));		
 	}
 	
-	public void pageDown() {
+	public void pageDown() {		
 		if (pageno==1) guideField.setText(map.get(player).getPagetwo());
 		if (pageno==2) guideField.setText(map.get(player).getPagethree());
 		if (pageno==3) guideField.setText(map.get(player).getPagefour());
@@ -266,7 +280,9 @@ public class GUIGuide extends GenericPopup {
 	void onCloseClick() {
 		Screen screen = ((SpoutPlayer) player).getMainScreen();				
 		screen.removeWidget(this);
-		player.getMainScreen().closePopup();
+		//player.getMainScreen().closePopup();
+		player.closeActiveWindow();
+		
 	}
 
 	void onSelect(int i, String text) {

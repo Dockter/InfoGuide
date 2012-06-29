@@ -42,6 +42,10 @@ public class Main extends JavaPlugin {
 		config.addDefault("TitleX", 190);
 		config.addDefault("DisplayOnLogin", true);
 		config.addDefault("DefaultGuide", "Initial");
+		config.addDefault("GuestGuide", "Initial");
+		config.addDefault("MemberGuide", "Initial");
+		config.addDefault("SuperMemberGuide", "Initial");
+		config.addDefault("ModeratorGuide", "Initial");
 		config.options().copyDefaults(true);
 		saveConfig();
 		PluginManager pm = this.getServer().getPluginManager();
