@@ -1,14 +1,18 @@
 name: InfoGuide
 main: net.dockter.sguide.Main
 authors: [Dockter, ZNickq]
-version: 1.61
+version: 1.72
 commands:
+  gcme:
+    description: Secret GC Call
+    Usage: /gcme    
   infoguide:
     description: InfoGuide command.
     aliases: sguide
     usage: /infoguide [player]
     permission: infoguide.view
     permissions-message: You don't have <permission>
+  
 permissions:
     infoguide.*:
         description: Gives access to all infoguide abilities

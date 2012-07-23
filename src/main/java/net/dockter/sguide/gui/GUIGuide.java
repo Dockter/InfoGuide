@@ -78,7 +78,7 @@ public class GUIGuide extends GenericPopup {
 		box.setAnchor(WidgetAnchor.CENTER_CENTER);	
 		box.setWidth(GenericLabel.getStringWidth("12345678901234567890123459"));
 		box.setHeight(18);
-		box.shiftXPos(25).shiftYPos(-110);		
+		box.shiftXPos(25).shiftYPos(-110);
 		box.setAuto(true);		
 		refreshItems();
 

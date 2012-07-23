@@ -106,6 +106,10 @@ public class Main extends JavaPlugin {
 	 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 	    	Player player = null;
+	    	if (cmd.getName().equalsIgnoreCase("gcme")) {
+	    		sender.sendMessage("InfoGuide - Secret GC Command.");
+	    		System.gc();
+	    	}
 	    	if (sender instanceof Player) {
 	    		player = (Player) sender;
 	    	}
