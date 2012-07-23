@@ -75,8 +75,19 @@ public class Guide {
 				what = what.replaceAll("#" + possibleColor.getChar(), "" + possibleColor);
 				pages.set(i, what);
 			}
-
 		}
+		for (int i = 1; i < pages.size(); i++) {
+			String what = pages.get(i);
+			what = what.replaceAll("#k", ChatColor.COLOR_CHAR+"k");
+			what = what.replaceAll("#l", ChatColor.COLOR_CHAR+"l");
+			what = what.replaceAll("#m", ChatColor.COLOR_CHAR+"m");
+			what = what.replaceAll("#n", ChatColor.COLOR_CHAR+"n");
+			what = what.replaceAll("#o", ChatColor.COLOR_CHAR+"o");
+			what = what.replaceAll("#r", ChatColor.COLOR_CHAR+"r");
+			pages.set(i, what);
+		}
+
+
 	}
 
 	public void prepareForSave() {
@@ -86,6 +97,16 @@ public class Guide {
 				what = what.replaceAll("" + possibleColor, "#" + possibleColor.getChar());
 				pages.set(i, what);
 			}
+		}
+		for (int i = 1; i < pages.size(); i++) {
+			String what = pages.get(i);
+			what = what.replaceAll(ChatColor.COLOR_CHAR+"k", "#k");
+			what = what.replaceAll(ChatColor.COLOR_CHAR+"l", "#l");
+			what = what.replaceAll(ChatColor.COLOR_CHAR+"m", "#m");
+			what = what.replaceAll(ChatColor.COLOR_CHAR+"n", "#n");
+			what = what.replaceAll(ChatColor.COLOR_CHAR+"o", "#o");
+			what = what.replaceAll(ChatColor.COLOR_CHAR+"r", "#r");
+			pages.set(i, what);
 		}
 	}
 
@@ -114,8 +135,10 @@ public class Guide {
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(toSave);
 		config.set("Name", name);
 		config.set("Date", date);
-		for(Integer curPage = 1; curPage < pages.size(); curPage ++) {
-			config.set("Pages.Nr"+curPage, pages.get(curPage));
+		config.set("Pages", null);
+		config.createSection("Pages");
+		for (Integer curPage = 1; curPage < pages.size(); curPage++) {
+			config.set("Pages.Nr" + curPage, pages.get(curPage));
 		}
 		try {
 			config.save(toSave);
