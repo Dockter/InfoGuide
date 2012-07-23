@@ -130,6 +130,7 @@ public class GUIGuide extends GenericPopup {
 		pu.shiftXPos(17).shiftYPos(87);
 				
 		pagelabel = new GenericLabel();
+		pagelabel.setPriority(RenderPriority.Highest);
 		pagelabel.setText(Integer.toString(pageno));
 		pagelabel.setAnchor(WidgetAnchor.CENTER_CENTER);
 		pagelabel.shiftXPos(66).shiftYPos(92);		
