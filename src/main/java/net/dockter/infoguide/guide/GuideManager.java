@@ -1,9 +1,9 @@
-package net.dockter.sguide.guide;
+package net.dockter.infoguide.guide;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import net.dockter.sguide.Main;
+import net.dockter.infoguide.Main;
 import org.bukkit.Bukkit;
 
 

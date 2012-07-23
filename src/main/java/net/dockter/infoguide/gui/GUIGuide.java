@@ -1,30 +1,22 @@
-package net.dockter.sguide.gui;
+package net.dockter.infoguide.gui;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
-
-import net.dockter.sguide.Main;
-import net.dockter.sguide.guide.Guide;
-import net.dockter.sguide.guide.GuideManager;
-
+import net.dockter.infoguide.Main;
+import net.dockter.infoguide.guide.Guide;
+import net.dockter.infoguide.guide.GuideManager;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.getspout.spoutapi.gui.CheckBox;
 import org.getspout.spoutapi.gui.Color;
 import org.getspout.spoutapi.gui.ComboBox;
 import org.getspout.spoutapi.gui.GenericButton;
-import org.getspout.spoutapi.gui.GenericCheckBox;
-import org.getspout.spoutapi.gui.GenericGradient;
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
-import org.getspout.spoutapi.gui.GenericSlider;
 import org.getspout.spoutapi.gui.GenericTextField;
 import org.getspout.spoutapi.gui.GenericTexture;
 import org.getspout.spoutapi.gui.RenderPriority;

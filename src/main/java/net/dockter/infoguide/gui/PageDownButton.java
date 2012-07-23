@@ -1,4 +1,4 @@
-package net.dockter.sguide.gui;
+package net.dockter.infoguide.gui;
 
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;

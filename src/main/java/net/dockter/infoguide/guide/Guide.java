@@ -1,4 +1,4 @@
-package net.dockter.sguide.guide;
+package net.dockter.infoguide.guide;
 
 import java.io.File;
 import java.io.IOException;

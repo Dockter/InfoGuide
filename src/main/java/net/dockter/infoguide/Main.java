@@ -1,19 +1,16 @@
-package net.dockter.sguide;
+package net.dockter.infoguide;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import net.dockter.sguide.gui.GUIGuide;
-import net.dockter.sguide.guide.GuideManager;
-
+import net.dockter.infoguide.gui.GUIGuide;
+import net.dockter.infoguide.guide.GuideManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.getspout.spoutapi.player.SpoutPlayer;

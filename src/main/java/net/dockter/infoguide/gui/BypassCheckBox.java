@@ -1,9 +1,7 @@
-package net.dockter.sguide.gui;
+package net.dockter.infoguide.gui;
 
-import net.dockter.sguide.Main;
-import org.bukkit.ChatColor;
+import net.dockter.infoguide.Main;
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
-import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericCheckBox;
 import org.getspout.spoutapi.player.SpoutPlayer;
 

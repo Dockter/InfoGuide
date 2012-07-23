@@ -1,4 +1,4 @@
-package net.dockter.sguide.gui;
+package net.dockter.infoguide.gui;
 
 import org.getspout.spoutapi.gui.GenericComboBox;
 
