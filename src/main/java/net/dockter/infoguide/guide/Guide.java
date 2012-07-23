@@ -164,4 +164,12 @@ public class Guide {
 	public void setName(String text) {
 		this.name = text;
 	}
+
+	public int getPages() {
+		return pages.size();
+	}
+	
+	public void addPage() {
+		pages.add("");
+	}
 }
