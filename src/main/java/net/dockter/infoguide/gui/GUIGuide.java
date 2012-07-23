@@ -229,56 +229,32 @@ public class GUIGuide extends GenericPopup {
 		map.put(player, guide);
 		pageno = 1;
 		pagelabel.setText(Integer.toString(pageno));
-		guideField.setText(guide.getPageone());
+		guideField.setText(guide.getPage(1));
 	}
 
 	public void pageUp() {
-		if (pageno==10) guideField.setText(map.get(player).getPagenine());
-		if (pageno==9) guideField.setText(map.get(player).getPageeight());
-		if (pageno==8) guideField.setText(map.get(player).getPageseven());
-		if (pageno==7) guideField.setText(map.get(player).getPagesix());
-		if (pageno==6) guideField.setText(map.get(player).getPagefive());
-		if (pageno==5) guideField.setText(map.get(player).getPagefour());
-		if (pageno==4) guideField.setText(map.get(player).getPagethree());
-		if (pageno==3) guideField.setText(map.get(player).getPagetwo());
-		if (pageno==2) guideField.setText(map.get(player).getPageone());
 		pageno = pageno - 1;
 			if (pageno==0) pageno=1;
+		guideField.setText(map.get(player).getPage(pageno));
 		pagelabel.setText(Integer.toString(pageno));		
 	}
 	
-	public void pageDown() {		
-		if (pageno==1) guideField.setText(map.get(player).getPagetwo());
-		if (pageno==2) guideField.setText(map.get(player).getPagethree());
-		if (pageno==3) guideField.setText(map.get(player).getPagefour());
-		if (pageno==4) guideField.setText(map.get(player).getPagefive());
-		if (pageno==5) guideField.setText(map.get(player).getPagesix());
-		if (pageno==6) guideField.setText(map.get(player).getPageseven());
-		if (pageno==7) guideField.setText(map.get(player).getPageeight());
-		if (pageno==8) guideField.setText(map.get(player).getPagenine());
-		if (pageno==9) guideField.setText(map.get(player).getPageten());		
+	public void pageDown() {				
 		pageno = pageno + 1;
 			if (pageno==11) pageno=10;	
+		guideField.setText(map.get(player).getPage(pageno));
 		pagelabel.setText(Integer.toString(pageno));		
 	}
 	
 	public void onNewClick() {
-		setGuide(new Guide("", "", "", "", "", "", "", "", "", "", "", "", ""));
+		setGuide(new Guide("", "", "", new ArrayList<String>()));
 		guideName.setVisible(false);
 		guideInvisible.setVisible(true);
 	}
 
 	void onSaveClick(String playerName) {
-		if (pageno==1) guide.setPageone(guideField.getText());
-		if (pageno==2) guide.setPagetwo(guideField.getText());
-		if (pageno==3) guide.setPagethree(guideField.getText());
-		if (pageno==4) guide.setPagefour(guideField.getText());
-		if (pageno==5) guide.setPagefive(guideField.getText());
-		if (pageno==6) guide.setPagesix(guideField.getText());
-		if (pageno==7) guide.setPageseven(guideField.getText());
-		if (pageno==8) guide.setPageeight(guideField.getText());
-		if (pageno==9) guide.setPagenine(guideField.getText());
-		if (pageno==10) guide.setPageten(guideField.getText());
+		
+		guide.setPage(pageno, guideField.getText());
 				
 		guide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		if (guideInvisible.isVisible()) {
