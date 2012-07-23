@@ -37,6 +37,8 @@ import java.util.logging.Logger;
 import net.dockter.infoguide.Main;
 import net.dockter.infoguide.guide.Guide;
 import net.dockter.infoguide.guide.GuideManager;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.getspout.spoutapi.gui.CheckBox;
 import org.getspout.spoutapi.gui.Color;
@@ -266,7 +268,7 @@ public class GUIGuide extends GenericPopup {
 		guideInvisible.setVisible(true);
 	}
 
-	void onSaveClick() {
+	void onSaveClick(String playerName) {
 		if (pageno==1) guide.setPageone(guideField.getText());
 		if (pageno==2) guide.setPagetwo(guideField.getText());
 		if (pageno==3) guide.setPagethree(guideField.getText());
@@ -286,6 +288,7 @@ public class GUIGuide extends GenericPopup {
 			guideName.setVisible(true);
 			GuideManager.addGuide(guide);
 		}
+		Bukkit.broadcastMessage(ChatColor.GOLD+playerName+ChatColor.YELLOW+" updated the guide "+ChatColor.GOLD+guide.getName()+ChatColor.YELLOW+"!");
 		guide.save();
 		refreshItems();
 	}
