@@ -1,4 +1,4 @@
 name: InfoGuide
-main: net.dockter.sguide.Main
+main: net.dockter.infoguide.Main
 authors: [Dockter, ZNickq]
 version: 0.1

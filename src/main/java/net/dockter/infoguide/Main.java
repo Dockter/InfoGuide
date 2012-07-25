@@ -86,16 +86,7 @@ public class Main extends JavaPlugin {
 			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
 			yconf.addDefault("Name", "Initial");
 			yconf.addDefault("Date", "Future");			
-			yconf.addDefault("Pageone", "Page 1 of InfoGuide");
-			yconf.addDefault("Pagetwo", "Page 2 of InfoGuide");
-			yconf.addDefault("Pagethree", "Page 3 of InfoGuide");
-			yconf.addDefault("Pagefour", "Page 4 of InfoGuide");
-			yconf.addDefault("Pagefive", "Page 5 of InfoGuide");
-			yconf.addDefault("Pagesix", "Page 6 of InfoGuide");
-			yconf.addDefault("Pageseven", "Page 7 of InfoGuide");
-			yconf.addDefault("Pageeight", "Page 8 of InfoGuide");
-			yconf.addDefault("Pagenine", "Page 9 of InfoGuide");
-			yconf.addDefault("Pageten", "Page 10 of InfoGuide");
+			yconf.addDefault("Pages.Nr1", "Page 1 of InfoGuide");
 			yconf.options().copyDefaults(true);
 			try {
 				yconf.save(init);
