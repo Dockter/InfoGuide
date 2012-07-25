@@ -228,7 +228,7 @@ public class GUIGuide extends GenericPopup {
 		pageno = 1;
 		pagelabel.setText(Integer.toString(pageno));
 		guideField.setText(guide.getPage(1));
-		if (pageno == guide.getPages() && player.hasPermission("infoguide.addnew")) {
+		if (pageno == guide.getPages() && player.hasPermission("infoguide.edit")) {
 			pd.setText("+");
 			pd.setDirty(true);
 		}
@@ -252,14 +252,14 @@ public class GUIGuide extends GenericPopup {
 		pageno++;
 		Guide gguide = map.get(player);
 		if (pageno == gguide.getPages() + 1) {
-			if (player.hasPermission("infoguide.addnew")) {
+			if (player.hasPermission("infoguide.edit")) {
 				gguide.addPage();
 				pd.setText(">>>");
 			}
 			pd.setDirty(true);
 			pageno--;
 		}
-		if (pageno == gguide.getPages() && player.hasPermission("infoguide.addnew")) {
+		if (pageno == gguide.getPages() && player.hasPermission("infoguide.edit")) {
 			pd.setText("+");
 			pd.setDirty(true);
 		}
