@@ -42,7 +42,6 @@ public class Guide {
 	public static Guide load(File file) {
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 		List<String> pgs = new ArrayList<String>();
-		pgs.add("PageZero");
 		System.out.println("Loading guide: " + file.getName());
 		if (config.isConfigurationSection("Pages")) {
 			System.out.println("Pages is a configuration section!");
@@ -62,6 +61,8 @@ public class Guide {
 		this.date = date;
 
 		this.pages = pages;
+		
+		pages.add("PageZero");
 
 		if (this.pages == null) {
 			this.pages = new ArrayList<String>();
