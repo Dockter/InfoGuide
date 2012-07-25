@@ -42,6 +42,7 @@ public class Guide {
 	public static Guide load(File file) {
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 		List<String> pgs = new ArrayList<String>();
+		pgs.add("PageZero");
 		if (config.isConfigurationSection("Pages")) {
 			ConfigurationSection cs = config.getConfigurationSection("Pages");
 			for (String key : cs.getKeys(false)) {
@@ -58,12 +59,15 @@ public class Guide {
 		this.date = date;
 
 		this.pages = pages;
-		
-		pages.add("PageZero");
 
 		if (this.pages == null) {
 			this.pages = new ArrayList<String>();
+			this.pages.add("PageZero");
 			log.info("Upgrading Guide..");
+		} else {
+			if(this.pages.isEmpty()) {
+				this.pages.add("PageZero");
+			}
 		}
 		prepareForLoad();
 	}
