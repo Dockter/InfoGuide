@@ -29,10 +29,10 @@ class GuideListener implements Listener {
 					GuideManager.load();
 					Bukkit.getScheduler().scheduleSyncDelayedTask(instance,
 							new Runnable() {
-						public void run() {
-							splr.getMainScreen().attachPopupScreen(new GUIGuide(splr));
-						}
-					}, 20L);
+								public void run() {
+									splr.getMainScreen().attachPopupScreen(new GUIGuide(splr));
+								}
+							}, 20L);
 				}
 			}
 		}
@@ -40,16 +40,16 @@ class GuideListener implements Listener {
 
 	@EventHandler
 	public void onInput(KeyPressedEvent event) {
-		if (event.getKey() == Keyboard.KEY_F12){
+		if (event.getKey() == Keyboard.KEY_F12) {
 			GuideManager.load();
 			event.getPlayer().getMainScreen().attachPopupScreen(new GUIGuide(event.getPlayer()));
 		}
 
 	}
+
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		SpoutPlayer sPlayer = (SpoutPlayer) event.getPlayer();
 		sPlayer.getMainScreen().removeWidgets(instance);
 	}
-
 }

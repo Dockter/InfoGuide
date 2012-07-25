@@ -1,30 +1,28 @@
 /**
  * This file is part of InfoGuide.
-
-Copyright Dockter 2012 <mcsnetworks.com>
-InfoGuide is licensed under the GNU General Public License.
-
-InfoGuide is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-As an exception, all classes which do not reference GPL licensed code
-are hereby licensed under the GNU Lesser Public License, as described
-in GNU General Public License.
-
-InfoGuide is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License,
-the GNU Lesser Public License (for classes that fulfill the exception)
-and the GNU General Public License along with this program. If not, see
-<http://www.gnu.org/licenses/> for the GNU General Public License and
-the GNU Lesser Public License.
-*/
-
+ *
+ * Copyright Dockter 2012 <mcsnetworks.com> InfoGuide is licensed under the GNU
+ * General Public License.
+ *
+ * InfoGuide is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * As an exception, all classes which do not reference GPL licensed code are
+ * hereby licensed under the GNU Lesser Public License, as described in GNU
+ * General Public License.
+ *
+ * InfoGuide is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License, the GNU
+ * Lesser Public License (for classes that fulfill the exception) and the GNU
+ * General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/> for the GNU General Public License and the GNU
+ * Lesser Public License.
+ */
 package net.dockter.infoguide;
 
 import java.io.File;
@@ -85,7 +83,7 @@ public class Main extends JavaPlugin {
 			}
 			YamlConfiguration yconf = YamlConfiguration.loadConfiguration(init);
 			yconf.addDefault("Name", "Initial");
-			yconf.addDefault("Date", "Future");			
+			yconf.addDefault("Date", "Future");
 			yconf.addDefault("Pages.Nr1", "Page 1 of InfoGuide");
 			yconf.options().copyDefaults(true);
 			try {
@@ -118,25 +116,25 @@ public class Main extends JavaPlugin {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	 
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-	    	Player player = null;
-	    	if (cmd.getName().equalsIgnoreCase("gcme")) {
-	    		sender.sendMessage("InfoGuide - Secret GC Command.");
-	    		System.gc();
-	    	}
-	    	if (sender instanceof Player) {
-	    		player = (Player) sender;
-	    	}
-	     
-	         if (cmd.getName().equalsIgnoreCase("infoguide")) {
-	    		if (player == null) {
-	    			sender.sendMessage("InfoGuide cannot be run from the server console.");
-	    		} else {
-	    			((SpoutPlayer) sender).getMainScreen().attachPopupScreen(new GUIGuide((SpoutPlayer) sender));	    			
-	    		}
-	    		return true;
-	    	}
-	    	return false;
-	    }
+		Player player = null;
+		if (cmd.getName().equalsIgnoreCase("gcme")) {
+			sender.sendMessage("InfoGuide - Secret GC Command.");
+			System.gc();
+		}
+		if (sender instanceof Player) {
+			player = (Player) sender;
+		}
+
+		if (cmd.getName().equalsIgnoreCase("infoguide")) {
+			if (player == null) {
+				sender.sendMessage("InfoGuide cannot be run from the server console.");
+			} else {
+				((SpoutPlayer) sender).getMainScreen().attachPopupScreen(new GUIGuide((SpoutPlayer) sender));
+			}
+			return true;
+		}
+		return false;
+	}
 }
