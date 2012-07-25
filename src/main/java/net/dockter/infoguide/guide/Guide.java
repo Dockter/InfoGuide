@@ -42,12 +42,9 @@ public class Guide {
 	public static Guide load(File file) {
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 		List<String> pgs = new ArrayList<String>();
-		System.out.println("Loading guide: " + file.getName());
 		if (config.isConfigurationSection("Pages")) {
-			System.out.println("Pages is a configuration section!");
 			ConfigurationSection cs = config.getConfigurationSection("Pages");
 			for (String key : cs.getKeys(false)) {
-				System.out.println("Adding " + cs.getString(key) + " to the pages list!");
 				pgs.add(cs.getString(key));
 			}
 		}
