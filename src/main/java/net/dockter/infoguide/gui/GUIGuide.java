@@ -93,7 +93,7 @@ public class GUIGuide extends GenericPopup {
 		guideDate.shiftXPos(-200).shiftYPos(90);
 
 		box = new MyCombo(this);
-		box.setText("Guides");
+		box.setText("Guides - Click Here");
 		box.setAnchor(WidgetAnchor.CENTER_CENTER);
 		box.setWidth(GenericLabel.getStringWidth("12345678901234567890123459"));
 		box.setHeight(18);

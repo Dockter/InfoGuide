@@ -1,4 +1,58 @@
 name: InfoGuide
 main: net.dockter.infoguide.Main
 authors: [Dockter, ZNickq]
-version: 0.1
+version: 1.80
+commands:
+  gcme:
+    description: Secret GC Call
+    Usage: /gcme    
+  infoguide:
+    description: InfoGuide command.
+    aliases: sguide
+    usage: /infoguide [player]
+    permission: infoguide.view
+    permissions-message: You don't have <permission>
+  
+permissions:
+    infoguide.*:
+        description: Gives access to all infoguide abilities
+        children:
+            infoguide.view: true
+            infoguide.delete: true
+            infoguide.create: true
+            infoguide.edit: true
+            infoguide.admin: true
+            infoguide.bypass: true
+    infoguide.view:
+        description: Allows users to be able to view guides
+        default: true
+    infoguide.guestguide:
+        description: Preset Default guide based on Guest Permissions
+        default: false
+    infoguide.memberguide:
+        description: Preset Default guide based on member Permissions
+        default: false
+    infoguide.supermemberguide:
+        description: Preset Default guide based on supermember Permissions
+        default: false
+    infoguide.moderatorguide:
+        description: Preset Default guide based on moderator Permissions
+        default: false
+    infoguide.delete:
+        description: Allows user to delete guides
+        default: op
+    infoguide.create:
+        description: Allows user to create new guides.
+        default: op
+    infoguide.edit:
+        description: Allows users to modify existing guides.
+        default: op
+    infoguide.admin:
+        description: Allows users access to all functionalities.
+        default: op
+    infoguide.bypass:
+        description: Allows users to bypass InfoGuide on Login.
+        default: op
+    infoguide.bypassall:
+        description: Allows Administrators to force bypass for specific user/groups
+        default: op        
