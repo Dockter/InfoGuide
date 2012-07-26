@@ -1,48 +1,48 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.Dockter</groupId>
-	<artifactId>InfoGuide</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>net.Dockter</groupId>
+    <artifactId>InfoGuide</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>InfoGuide</name>
-	<url>http://www.almuramc.com</url>
+    <name>InfoGuide</name>
+    <url>http://www.almuramc.com</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-	<!-- Repository locations -->
-	<repositories>
-		<repository>
-			<id>spout-repo</id>
-			<url>http://repo.spout.org</url>
-		</repository>
-	</repositories>
-	<dependencies>
-		  <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <version>1.2.5-R4.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.getspout</groupId>
-      <artifactId>spoutpluginapi</artifactId>
-      <version>dev-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>   
-    <dependency>
-      <groupId>org.spout</groupId>
-      <artifactId>spoutapi</artifactId>
-      <version>dev-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>    
-	</dependencies>
-	<build>
+    <!-- Repository locations -->
+    <repositories>
+        <repository>
+            <id>spout-repo</id>
+            <url>http://repo.spout.org</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.2.5-R4.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.getspout</groupId>
+            <artifactId>spoutpluginapi</artifactId>
+            <version>dev-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>   
+        <dependency>
+            <groupId>org.spout</groupId>
+            <artifactId>spoutapi</artifactId>
+            <version>dev-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>    
+    </dependencies>
+    <build>
         <defaultGoal>clean install</defaultGoal>
         <!-- Resources -->
         <resources>

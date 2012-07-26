@@ -48,6 +48,9 @@ public class Guide {
 			for (String key : cs.getKeys(false)) {
 				pgs.add(cs.getString(key));
 			}
+		} else {
+			System.out.println("Converting "+file.getName()+" to new format!");
+			Convertor.handle10(config, pgs);
 		}
 		return new Guide(config.getString("Name"), config.getString("Date"), config.getString("Text"), pgs);
 	}
@@ -63,7 +66,6 @@ public class Guide {
 		if (this.pages == null) {
 			this.pages = new ArrayList<String>();
 			this.pages.add("PageZero");
-			log.info("Upgrading Guide..");
 		} else {
 			if(this.pages.isEmpty()) {
 				this.pages.add("PageZero");
@@ -72,7 +74,7 @@ public class Guide {
 		prepareForLoad();
 	}
 
-	public void prepareForLoad() {
+	public final void prepareForLoad() {
 		for (ChatColor possibleColor : ChatColor.values()) {
 			for (int i = 1; i < pages.size(); i++) {
 				String what = pages.get(i);
