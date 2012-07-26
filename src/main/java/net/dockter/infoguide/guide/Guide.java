@@ -52,6 +52,11 @@ public class Guide {
 			System.out.println("Converting "+file.getName()+" to new format!");
 			Convertor.handle10(config, pgs);
 		}
+		try {
+			config.save(file);
+		} catch (IOException ex) {
+			Logger.getLogger(Guide.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		return new Guide(config.getString("Name"), config.getString("Date"), config.getString("Text"), pgs);
 	}
 	private String name, date;
@@ -128,7 +133,6 @@ public class Guide {
 		if (i == pages.size()) {
 			pages.add("");
 		}
-		System.out.println("Returning text: " + pages.get(i));
 		return pages.get(i);
 	}
 
