@@ -213,7 +213,7 @@ public class GUIGuide extends GenericPopup {
 			return;
 		} else {
 			setGuide(GuideManager.getLoadedGuides().get(Main.getInstance().getConfig().getString("DefaultGuide")));
-		}
+		}		
 	}
 	private Guide guide;
 
@@ -244,6 +244,7 @@ public class GUIGuide extends GenericPopup {
 			pd.setText(">>>");
 			pd.setDirty(true);
 		}
+		
 		guideField.setText(gguide.getPage(pageno));
 		pagelabel.setText(Integer.toString(pageno));
 	}
@@ -276,7 +277,7 @@ public class GUIGuide extends GenericPopup {
 	void onSaveClick(String playerName) {
 
 		Guide gguide = map.get(player);
-		
+				
 		gguide.setPage(pageno, guideField.getText());
 
 		gguide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
@@ -287,9 +288,15 @@ public class GUIGuide extends GenericPopup {
 			guideName.setVisible(true);
 			GuideManager.addGuide(gguide);
 		}
-		Bukkit.broadcastMessage(ChatColor.GOLD + playerName + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + " on page "+pageno+"!");
+		
+		Bukkit.broadcastMessage(ChatColor.GOLD + "~Dockter" + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + " on page "+pageno+"!");
 		gguide.save();
 		refreshItems();
+		guide.prepareForLoad();
+		map.put(player, guide);
+		pagelabel.setText(Integer.toString(pageno));
+		guideField.setText(guide.getPage(pageno));
+		
 	}
 
 	void onDeleteClick() {

@@ -39,6 +39,6 @@ public class SaveButton extends GenericButton {
 
 	@Override
 	public void onButtonClick(ButtonClickEvent event) {
-		guide.onSaveClick(event.getPlayer().getName());
+		guide.onSaveClick(event.getPlayer().getDisplayName());
 	}
 }
