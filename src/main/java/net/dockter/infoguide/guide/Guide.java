@@ -57,12 +57,12 @@ public class Guide {
 		} catch (IOException ex) {
 			Logger.getLogger(Guide.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return new Guide(config.getString("Name"), config.getString("Date"), config.getString("Text"), pgs);
+		return new Guide(config.getString("Name"), config.getString("Date"), pgs);
 	}
 	private String name, date;
 	private List<String> pages;
 
-	public Guide(String name, String date, String text, List<String> pages) {
+	public Guide(String name, String date, List<String> pages) {
 		this.name = name;
 		this.date = date;
 

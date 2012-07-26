@@ -268,7 +268,7 @@ public class GUIGuide extends GenericPopup {
 	}
 
 	public void onNewClick() {
-		setGuide(new Guide("", "", "", new ArrayList<String>()));
+		setGuide(new Guide("", "", new ArrayList<String>()));
 		guideName.setVisible(false);
 		guideInvisible.setVisible(true);
 	}

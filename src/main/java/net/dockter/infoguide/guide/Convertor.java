@@ -16,6 +16,7 @@ class Convertor {
 		addAndRemoveIfExists(config, pgs, "Pageeight");
 		addAndRemoveIfExists(config, pgs, "Pagenine");
 		addAndRemoveIfExists(config, pgs, "Pageten");
+		config.set("Text", null);
 	}
 
 	private static void addAndRemoveIfExists(YamlConfiguration config, List<String> pgs, String pageone) {
