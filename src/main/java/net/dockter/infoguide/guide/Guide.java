@@ -49,13 +49,13 @@ public class Guide {
 				pgs.add(cs.getString(key));
 			}
 		} else {
-			System.out.println("Converting "+file.getName()+" to new format!");
+			System.out.println("Converting " + file.getName() + " to new format!");
 			Convertor.handle10(config, pgs);
-		}
-		try {
-			config.save(file);
-		} catch (IOException ex) {
-			Logger.getLogger(Guide.class.getName()).log(Level.SEVERE, null, ex);
+			try {
+				config.save(file);
+			} catch (IOException ex) {
+				Logger.getLogger(Guide.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		}
 		return new Guide(config.getString("Name"), config.getString("Date"), pgs);
 	}
@@ -63,23 +63,23 @@ public class Guide {
 	private List<String> pages;
 
 	public Guide(String name, String date, List<String> pages) {
-		try{
-		this.name = name;
-		this.date = date;
+		try {
+			this.name = name;
+			this.date = date;
 
-		this.pages = pages;
+			this.pages = pages;
 
-		if (this.pages == null) {
-			this.pages = new ArrayList<String>();
-			this.pages.add("PageZero");
-		} else {
-			if(this.pages.isEmpty()) {
+			if (this.pages == null) {
+				this.pages = new ArrayList<String>();
 				this.pages.add("PageZero");
+			} else {
+				if (this.pages.isEmpty()) {
+					this.pages.add("PageZero");
+				}
 			}
-		}
-		prepareForLoad();
-		} catch(Exception ex) {
-			System.out.println("Error loading guide "+name+"!");
+			prepareForLoad();
+		} catch (Exception ex) {
+			System.out.println("Error loading guide " + name + "!");
 			ex.printStackTrace();
 		}
 	}
