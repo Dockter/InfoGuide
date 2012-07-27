@@ -71,7 +71,7 @@ public class GUIGuide extends GenericPopup {
 		label.setText(Main.getInstance().getConfig().getString("PromptTitle"));
 		label.setAnchor(WidgetAnchor.CENTER_CENTER);
 		label.shiftXPos(-35).shiftYPos(-122);
-		label.setPriority(RenderPriority.Lowest);
+		label.setPriority(RenderPriority.Highest);
 		label.setWidth(-1).setHeight(-1);
 
 		guideName = new GenericLabel("TheGuideNameHere");
@@ -99,7 +99,7 @@ public class GUIGuide extends GenericPopup {
 		box.setHeight(18);
 		box.shiftXPos(25).shiftYPos(-110);
 		box.setAuto(true);
-		box.setPriority(RenderPriority.Highest);
+		box.setPriority(RenderPriority.Low);
 		refreshItems();
 
 		GenericTexture border = new GenericTexture("http://www.almuramc.com/images/sguide.png");
@@ -131,11 +131,10 @@ public class GUIGuide extends GenericPopup {
 		pu.shiftXPos(17).shiftYPos(87);
 
 		pagelabel = new GenericLabel();
-		pagelabel.setPriority(RenderPriority.Highest);
 		pagelabel.setText(Integer.toString(pageno));
 		pagelabel.setAnchor(WidgetAnchor.CENTER_CENTER);
 		pagelabel.shiftXPos(66).shiftYPos(92);
-		pagelabel.setPriority(RenderPriority.Lowest);
+		pagelabel.setPriority(RenderPriority.Normal);
 		pagelabel.setWidth(5).setHeight(18);
 
 		pd = new PageDownButton(this);
@@ -286,7 +285,7 @@ public class GUIGuide extends GenericPopup {
 			guideName.setVisible(true);
 			GuideManager.addGuide(guide);
 		}
-		Bukkit.broadcastMessage(ChatColor.GOLD + playerName + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + "!");
+		Bukkit.broadcastMessage(ChatColor.GOLD + playerName + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + " on page "+pageno+"!");
 		guide.save();
 		refreshItems();
 	}
