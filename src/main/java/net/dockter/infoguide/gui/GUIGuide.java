@@ -99,6 +99,7 @@ public class GUIGuide extends GenericPopup {
 		box.setHeight(18);
 		box.shiftXPos(25).shiftYPos(-110);
 		box.setAuto(true);
+		box.setPriority(RenderPriority.Highest);
 		refreshItems();
 
 		GenericTexture border = new GenericTexture("http://www.almuramc.com/images/sguide.png");
@@ -259,7 +260,7 @@ public class GUIGuide extends GenericPopup {
 			pd.setDirty(true);
 			pageno--;
 		}
-		if (pageno == gguide.getPages() && player.hasPermission("infoguide.edit")) {
+		if (pageno == gguide.getPages() && (player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin"))) {
 			pd.setText("+");
 			pd.setDirty(true);
 		}
