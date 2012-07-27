@@ -275,18 +275,20 @@ public class GUIGuide extends GenericPopup {
 
 	void onSaveClick(String playerName) {
 
-		guide.setPage(pageno, guideField.getText());
+		Guide gguide = map.get(player);
+		
+		gguide.setPage(pageno, guideField.getText());
 
-		guide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
+		gguide.setDate(new SimpleDateFormat("HH:mm dd-MM").format(Calendar.getInstance().getTime()));
 		if (guideInvisible.isVisible()) {
-			guide.setName(guideInvisible.getText());
+			gguide.setName(guideInvisible.getText());
 			guideName.setText(guideInvisible.getText()).setWidth(-1);
 			guideInvisible.setVisible(false);
 			guideName.setVisible(true);
-			GuideManager.addGuide(guide);
+			GuideManager.addGuide(gguide);
 		}
 		Bukkit.broadcastMessage(ChatColor.GOLD + playerName + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + " on page "+pageno+"!");
-		guide.save();
+		gguide.save();
 		refreshItems();
 	}
 
