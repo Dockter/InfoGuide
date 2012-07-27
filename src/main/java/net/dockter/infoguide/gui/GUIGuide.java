@@ -252,7 +252,7 @@ public class GUIGuide extends GenericPopup {
 		pageno++;
 		Guide gguide = map.get(player);
 		if (pageno == gguide.getPages() + 1) {
-			if (player.hasPermission("infoguide.edit")) {
+			if (player.hasPermission("infoguide.edit") || player.hasPermission("infoguide.admin")) {
 				gguide.addPage();
 				pd.setText(">>>");
 			}
