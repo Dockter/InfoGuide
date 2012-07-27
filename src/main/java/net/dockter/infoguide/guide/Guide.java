@@ -63,6 +63,7 @@ public class Guide {
 	private List<String> pages;
 
 	public Guide(String name, String date, List<String> pages) {
+		try{
 		this.name = name;
 		this.date = date;
 
@@ -77,6 +78,10 @@ public class Guide {
 			}
 		}
 		prepareForLoad();
+		} catch(Exception ex) {
+			System.out.println("Error loading guide "+name+"!");
+			ex.printStackTrace();
+		}
 	}
 
 	public final void prepareForLoad() {
