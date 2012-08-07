@@ -38,12 +38,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.getspout.spoutapi.SpoutManager;
+import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class Main extends JavaPlugin {
 
 	private static Main instance;
 	private static FileConfiguration bypass;
+	public static String hotkeys = null;
 
 	public static Main getInstance() {
 		return instance;
@@ -63,6 +66,8 @@ public class Main extends JavaPlugin {
 		config.addDefault("PromptTitle", "Info Guide");
 		config.addDefault("TitleX", 190);
 		config.addDefault("DisplayOnLogin", true);
+		config.addDefault("Hot_Key", "KEY_F12");
+		config.addDefault("GUITexture", "http://www.almuramc.com/images/sguide.png");
 		config.addDefault("DefaultGuide", "Initial");
 		config.addDefault("GuestGuide", "Initial");
 		config.addDefault("MemberGuide", "Initial");
@@ -98,6 +103,8 @@ public class Main extends JavaPlugin {
 			}
 		}
 		bypass = YamlConfiguration.loadConfiguration(file);
+		hotkeys = config.getString("Hot_Key");
+		SpoutManager.getKeyBindingManager().registerBinding("InfoGuide", Keyboard.valueOf(Main.hotkeys), "Opens InfoGuide", new InfoGuideInputHandler(), Main.getInstance());
 	}
 
 	public static boolean isBypassing(String name) {

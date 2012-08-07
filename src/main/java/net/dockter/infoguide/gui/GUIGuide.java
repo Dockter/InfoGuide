@@ -70,9 +70,8 @@ public class GUIGuide extends GenericPopup {
 		GenericLabel label = new GenericLabel();
 		label.setText(Main.getInstance().getConfig().getString("PromptTitle"));
 		label.setAnchor(WidgetAnchor.CENTER_CENTER);
-		label.shiftXPos(-35).shiftYPos(-122);
-		label.setPriority(RenderPriority.Highest);
-		label.setWidth(-1).setHeight(-1);
+		label.shiftXPos(-35).shiftYPos(-122);	
+		label.setScale(1.2F).setWidth(-1).setHeight(-1);
 
 		guideName = new GenericLabel("TheGuideNameHere");
 		guideName.setWidth(-1).setHeight(-1);
@@ -102,7 +101,7 @@ public class GUIGuide extends GenericPopup {
 		box.setPriority(RenderPriority.Low);
 		refreshItems();
 
-		GenericTexture border = new GenericTexture("http://www.almuramc.com/images/sguide.png");
+		GenericTexture border = new GenericTexture(Main.getInstance().getConfig().getString("GUITexture"));
 		border.setAnchor(WidgetAnchor.CENTER_CENTER);
 		border.setPriority(RenderPriority.High);
 		border.setWidth(626).setHeight(240);
@@ -149,9 +148,6 @@ public class GUIGuide extends GenericPopup {
 		checkBox.setHeight(20).setWidth(19);
 		checkBox.shiftXPos(-52).shiftYPos(87);
 		checkBox.setAuto(true);
-
-		this.setTransparent(true);
-		attachWidgets(Main.getInstance(), border, label);
 
 		this.setTransparent(true);
 		attachWidget(Main.getInstance(), label);
@@ -272,6 +268,7 @@ public class GUIGuide extends GenericPopup {
 		setGuide(new Guide("", "", new ArrayList<String>()));
 		guideName.setVisible(false);
 		guideInvisible.setVisible(true);
+		guideInvisible.setText("New Guide Name Here");
 	}
 
 	void onSaveClick(String playerName) {
@@ -289,7 +286,7 @@ public class GUIGuide extends GenericPopup {
 			GuideManager.addGuide(gguide);
 		}
 		
-		Bukkit.broadcastMessage(ChatColor.GOLD + "~Dockter" + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + " on page "+pageno+"!");
+		Bukkit.broadcastMessage(ChatColor.GOLD + player.getDisplayName() + ChatColor.YELLOW + " updated the guide " + ChatColor.GOLD + guide.getName() + ChatColor.YELLOW + " on page "+pageno+"!");
 		gguide.save();
 		refreshItems();
 		guide.prepareForLoad();

@@ -3,6 +3,7 @@ package net.dockter.infoguide;
 import net.dockter.infoguide.gui.GUIGuide;
 import net.dockter.infoguide.guide.GuideManager;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -26,30 +27,25 @@ class GuideListener implements Listener {
 				if (!(event.getPlayer().hasPermission("infoguide.bypass"))
 						&& !instance.isBypassing(event.getPlayer().getName())) {
 					final SpoutPlayer splr = (SpoutPlayer) event.getPlayer();
-					GuideManager.load();
-					Bukkit.getScheduler().scheduleSyncDelayedTask(instance,
+						Bukkit.getScheduler().scheduleSyncDelayedTask(instance,
 							new Runnable() {
 								public void run() {
-									splr.getMainScreen().attachPopupScreen(new GUIGuide(splr));
+									openInfoGuide(splr);
 								}
 							}, 20L);
 				}
 			}
 		}
 	}
-
-	@EventHandler
-	public void onInput(KeyPressedEvent event) {
-		if (event.getKey() == Keyboard.KEY_F12) {
-			GuideManager.load();
-			event.getPlayer().getMainScreen().attachPopupScreen(new GUIGuide(event.getPlayer()));
-		}
-
-	}
-
+	
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		SpoutPlayer sPlayer = (SpoutPlayer) event.getPlayer();
 		sPlayer.getMainScreen().removeWidgets(instance);
+	}
+	
+	public static void openInfoGuide(SpoutPlayer player) {
+		GuideManager.load();
+		player.getMainScreen().attachPopupScreen(new GUIGuide(player));
 	}
 }
