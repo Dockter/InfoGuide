@@ -12,7 +12,7 @@ import org.getspout.spoutapi.event.input.KeyPressedEvent;
 import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
-class GuideListener implements Listener {
+public class GuideListener implements Listener {
 
 	private Main instance;
 
