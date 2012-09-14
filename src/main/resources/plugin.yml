@@ -2,6 +2,7 @@ name: InfoGuide
 main: net.dockter.infoguide.Main
 authors: [Dockter, ZNickq]
 version: 1.9
+depend: [Spout]
 commands:
   gcme:
     description: Secret GC Call

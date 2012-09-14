@@ -77,6 +77,7 @@ public class GUIGuide extends GenericPopup {
 		guideName.setWidth(-1).setHeight(-1);
 		guideName.setAnchor(WidgetAnchor.CENTER_CENTER);
 		guideName.shiftXPos(-200).shiftYPos(-105);
+		guideName.setScale(1.3F);
 
 		guideInvisible = new GenericTextField();
 		guideInvisible.setWidth(150).setHeight(18);
