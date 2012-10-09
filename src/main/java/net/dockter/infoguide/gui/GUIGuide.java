@@ -322,11 +322,19 @@ public class GUIGuide extends GenericPopup {
 		List<String> items = new ArrayList<String>();
 		for (String gguide : GuideManager.getLoadedGuides().keySet()) {
 			if (player.hasPermission("infoguide.view." + gguide) || player.hasPermission("infoguide.view")) {
-				items.add(gguide);
+				items.add(gguide);  // Add All Guides that are available to the user.
 			}
 			if (player.hasPermission("infoguide.hide." + gguide)) {
-				items.remove(gguide);
+				if (items.contains(gguide)) {					
+					items.remove(gguide); // Remove Specific Guides that are suppose to be hidden.
+				}
 			}
+			if (player.hasPermission("infoguide.view." + gguide)  || player.hasPermission("infoguide.admin")) {
+				if (!items.contains(gguide)) {
+					items.add(gguide); // Override inherited Hide Permissions				
+				}
+			}
+				
 			
 		}
 		Collections.sort(items, String.CASE_INSENSITIVE_ORDER);
