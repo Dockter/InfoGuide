@@ -34,16 +34,7 @@ import org.bukkit.Bukkit;
 public class GuideManager {
 
 	private static final Map<String, Guide> loadedGuides = new HashMap<String, Guide>();
-
-	// Disabled the auto-load functionality, too much strain on servers.
-	//static {
-	//load();
-	//Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
-	//public void run() {
-	//	load();
-	//}
-	//}, 20L*5, 20L*5);
-	//}
+	
 	public static void disable() {
 		for (Guide guide : loadedGuides.values()) {
 			guide.save();

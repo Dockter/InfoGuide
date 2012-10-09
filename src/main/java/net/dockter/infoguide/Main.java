@@ -67,7 +67,7 @@ public class Main extends JavaPlugin {
 		config.addDefault("TitleX", 190);
 		config.addDefault("DisplayOnLogin", true);
 		config.addDefault("Hot_Key", "KEY_F12");
-		config.addDefault("GUITexture", "http://www.almuramc.com/images/sguide.png");
+		config.addDefault("GUITexture", "http://www.almuramc.com/images/playerplus.png");
 		config.addDefault("DefaultGuide", "Initial");
 		config.addDefault("GuestGuide", "Initial");
 		config.addDefault("MemberGuide", "Initial");

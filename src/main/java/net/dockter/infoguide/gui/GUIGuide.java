@@ -324,6 +324,10 @@ public class GUIGuide extends GenericPopup {
 			if (player.hasPermission("infoguide.view." + gguide) || player.hasPermission("infoguide.view")) {
 				items.add(gguide);
 			}
+			if (player.hasPermission("infoguide.hide." + gguide)) {
+				items.remove(gguide);
+			}
+			
 		}
 		Collections.sort(items, String.CASE_INSENSITIVE_ORDER);
 		box.setItems(items);

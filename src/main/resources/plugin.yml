@@ -1,7 +1,7 @@
 name: InfoGuide
 main: net.dockter.infoguide.Main
-authors: [Dockter, ZNickq]
-version: 1.9
+authors: [AlmuraDev]
+version: 2.0
 depend: [Spout]
 commands:
   gcme:
@@ -26,7 +26,10 @@ permissions:
             infoguide.bypass: true
     infoguide.view:
         description: Allows users to be able to view guides
-        default: true
+        default: false
+    infoguide.hide:
+        description: Prevents user from seeing specific guides
+        default: false
     infoguide.guestguide:
         description: Preset Default guide based on Guest Permissions
         default: false
